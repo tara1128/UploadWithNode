@@ -15,15 +15,17 @@ block content
             div(class='make-hide' id='plupDomain') #{domain}
             div(class='make-hide' id='plupUptoken') #{uptokenUrl}
             div(class='make-hide' id='plupLocalSave') #{localSave}
-
             div(class='plup-filepicker' id='plupFilePicker') #{selText}
+            div(class='plup-empty' id='plupEmpty') Nothing has been uploaded yet!
             div(class='plup-filelist' id='plupFileList')
+
             div(class='plup-fileconsole' id='plupFileConsole')
-          p(class='up-warn Warn')
-        div(class='content-main-inner box960')
-          div(class='loc-list locList clearfix')
+          p(class='up-warn Warn') This is the warning text!
+        div(class='content-main-copyright') 
+          p Jide Web Team @2016 All rights reserved.
 
-
+  div(id='particles')
+    canvas(class='particles-js-canvas-el' width='879' height='956' style='width: 100%; height: 100%;')
 
 
   script(type='text/javascript' src='/javascripts/index.js')

@@ -1,7 +1,7 @@
 /*
   routes/index.js for Jide upload.
   Render index page
-  Latest modified 2016-01-11 10:55
+  Latest modified 2016-01-13 14:41
 */
 
 var express = require('express');
@@ -32,7 +32,7 @@ router.get('/', function(req, res){
     domain: qnConf.QiniuJideConfig.Domain,
     uptokenUrl: qnConf.QiniuJideConfig.Uptoken_Url,
     localSave: jdConf.localSaveApi,
-    selText: 'Select File'
+    selText: 'Select Files'
   });
 });
 
@@ -58,25 +58,38 @@ router.post(jdConf.localSaveApi, multipartMiddleware, function(req, res){
       var result = 'Your file ' + fileName + ' has been stored in Jide Server successfully!';
       var uploadInfos = {
         FileRename: filenameForCloud,
-        AWSInfo: awsConf.myConfig // Test with my own account
+        AWSInfo: awsConf.myConfig, // Test with my own account
+        QiniuInfo: null
         // AWSInfo: awsConf.JideTestConfig // Test with jide test account
         // AWSInfo: awsConf.JideProdConfig // Publish with jide production account
       };
-      // Do AWS upload in browser client:
-      res.status(result).send( uploadInfos ); // Send datas to the client in the function of 'FileUploaded'!
+      // Do AWS upload in browser client, with AWSInfo of uploadInfos
       // Do Qiniu upload in here:
       var qiniu_uptoken = generateUptoken.Uptoken(qnConf.QiniuJideConfig.Bucket_Name);
       var extra = null;
+
       fs.readFile(targetPath, function(error, data){
-        qiniu.io.put(qiniu_uptoken, uploadDirName + '/' + filenameForCloud, data, extra, function(err, ret){
-          if(err){
-            console.log('Something is wrong with Qiniu upload! ', err);
-          }else{
-            console.log('qiniu: ', ret);
-            console.log('Qiniu URL = ', qnConf.QiniuJideConfig.Domain + uploadDirName + '/' + filenameForCloud);
-          }
-        });
-      });
+        if(error){
+          var result = 'Read file in server failed!';
+          res.status(result).send( uploadInfos ); // Send datas to the client in the function of 'FileUploaded'!
+        }else{
+          qiniu.io.put(qiniu_uptoken, uploadDirName + '/' + filenameForCloud, data, extra, function(err, ret){
+            if(err){
+              var result = 'There is an error in qiniu.io.put!';
+              res.status(result).send( uploadInfos ); // Send datas to the client in the function of 'FileUploaded'!
+            }else{
+              var result = 'Qiniu upload has completed successfully!';
+              var url = qnConf.QiniuJideConfig.Domain + ret.key;
+              uploadInfos.QiniuInfo = { // Overwrite QiniuInfo, whose initial value is null
+                hash: ret.hash,
+                link: url
+              };
+              res.status(200).send( uploadInfos ); // Send datas to the client in the function of 'FileUploaded'!
+            }
+          });
+        }
+      });// End readFile
+
     }
   });
 });
