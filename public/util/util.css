@@ -1,0 +1,241 @@
+/*
+  util.css, latest modified 2015-09-14 11:39
+*/
+
+/* ------------ css for input ----------- */
+.U_inputbox {
+  position: relative;
+}
+.U_inputPrimary {
+  display: block;
+  padding: 0 3px;
+  height: 46px;
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+  color: #717171;
+  font-size: 16px;
+  line-height: 45px;
+  box-sizing: border-box;
+}
+.U_inputPrimary.error {
+  border: 1px solid #f33;
+}
+.U_inputPrimary.short {
+  width: 90px;
+}
+.U_inputPrimary.medium {
+  width: 340px;
+}
+.U_inputPrimary.long {
+  width: 540px;
+}
+.U_inputPrimary.flex90 {
+  margin: 0 auto;
+  width: 90%;
+}
+.U_inputPrimary.flex100 {
+  width: 100%;
+}
+
+.U_inputErrorMsg {
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  color: #f33;
+  font-size: 14px;
+}
+.U_inputPlder {
+  display: none;
+  position: absolute;
+  top: 17px;
+  left: 10px;
+  color: #c8c8c8;
+}
+
+/* ------------ css for popAlert ----------- */
+.U_warningContainer {
+  position: fixed;
+  z-index: 99;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.2);
+  background: none\9;
+}
+.U_Warning {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -155px;
+  margin-left: -255px;
+  padding: 120px 0 20px;
+  width: 510px;
+  min-height: 100px;
+  border: 1px solid #c8c8c8;
+  background: url("https://dn-cdn-shop-jide-com.qbox.me/jide_upload/P1438229179942_icon_warning.png") 50% 25% no-repeat #fff;
+  border-radius: 4px;
+  box-shadow: 1px 1px 50px rgba(0,0,0,.2);
+  overflow: hidden;
+}
+.U_Warning .fl {
+  float: left;
+}
+.U_Warning .fr {
+  float: right;
+}
+.U_Warning.warning {
+  background: url("https://dn-cdn-shop-jide-com.qbox.me/jide_upload/P1438229179942_icon_warning.png") 50% 25% no-repeat #fff;
+  padding: 120px 0 20px;
+}
+.U_Warning.congrates {
+  background: url("https://dn-cdn-shop-jide-com.qbox.me/jide_upload/H1438232727894_icon_orderok.png") 50% 25% no-repeat #fff;
+  padding: 120px 0 20px;
+}
+.U_Warning.nobg {
+  background: #fff;
+  padding: 50px 0 20px;
+}
+.U_warningTitle {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #fafafa;
+}
+.U_warningTitle span {
+  display: block;
+  margin-left: 20px;
+  line-height: 54px;
+  font-size: 16px;
+  color: #717171;
+}
+.U_warningSimpleText {
+  padding: 20px;
+  font-size: 16px;
+  line-height: 1.2em;
+  color: #717171;
+}
+.U_warningSimpleText.center {
+  text-align: center;
+}
+.U_warningSimpleText.right {
+  text-align: right;
+}
+.U_warningBtns {
+  margin: 10px auto;
+  width: 55%;
+  overflow: hidden;
+}
+.U_warningHTMLBox {
+  padding: 20px;
+}
+
+
+/* ------------ css for buttons ----------- */
+.btn-primary {
+  display: block;
+  padding: 0 15px;
+  width: 100px;
+  height: 44px;
+  background-color: #008cff;
+  border: 1px solid #008cff;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.btn-primary:hover {
+  text-decoration: none;
+  background-color: #0096ff;
+}
+/* Series of buttons below, all based on primary button.
+   When using 'btn-*' as a class, 'btn-primary' should be used at the same time. */
+
+/* different sizes for button */
+.btn-primary.btn-flex100 {
+  width: 100%;
+}
+.btn-primary.btn-flex90 {
+  width: 90%;
+}
+.btn-primary.btn-flex50 {
+  width: 50%;
+}
+.btn-primary.btn-flex45 {
+  width: 45%;
+}
+.btn-primary.btn-long120 {
+  width: 120px;
+}
+.btn-primary.btn-long144 {
+  width: 144px;
+}
+.btn-primary.btn-long150 {
+  width: 150px;
+}
+.btn-primary.btn-long180 {
+  width: 180px;
+}
+.btn-primary.btn-short80 {
+  width: 80px;
+}
+.btn-primary.btn-short50 {
+  width: 50px;
+}
+.btn-primary.btn-short30 {
+  width: 30px;
+}
+.btn-center {
+  margin: 0 auto;
+}
+
+/* different looks for button */
+/* blank button */
+.btn-primary.btn-blank {
+  background-color: #fff;
+  color: #008cff;
+}
+.btn-primary.btn-blank:hover {
+  border: 1px solid #0096ff;
+  color: #0096ff;
+}
+
+/* red button */
+.btn-primary.btn-red {
+  border: 1px solid #fd4723;
+  background-color: #fd4723;
+  color: #fff;
+}
+.btn-primary.btn-red:hover {
+  border: 1px solid #f33;
+  background-color: #f33;
+}
+
+/* grey button, for disabled */
+.btn-primary.btn-grey, .btn-primary.btn-disabled {
+  border: 1px solid #999;
+  background-color: #999;
+  color: #fff;
+  cursor: default;
+}
+
+/* green button */
+.btn-primary.btn-green {
+  border: 1px solid #44a340;
+  background-color: #44a340;
+  color: #fff;
+}
+.btn-primary.btn-green:hover {
+  border: 1px solid #1e6823;
+  background-color: #1e6823;
+}
+
+

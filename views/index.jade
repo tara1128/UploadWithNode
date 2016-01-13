@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  div(class='wrapper')
+
+    div(class='content-wrapper clearfix' id='J_contentWrapper')
+      div(class='content-nav')
+        div(class='content-nav-inner box960 clearfix')
+          h1(class='content-title-h1') #{H1}
+          h2(class='content-title-h2') #{H2}
+      div(class='content-main')
+        div(class='content-main-inner box960 clearfix')
+          p(class='up-txt') #{desc}
+          div(class='plup-container' id='plupContainer')
+            div(class='make-hide' id='plupDomain') #{domain}
+            div(class='make-hide' id='plupUptoken') #{uptokenUrl}
+            div(class='make-hide' id='plupLocalSave') #{localSave}
+
+            div(class='plup-filepicker' id='plupFilePicker') #{selText}
+            div(class='plup-filelist' id='plupFileList')
+            div(class='plup-fileconsole' id='plupFileConsole')
+          p(class='up-warn Warn')
+        div(class='content-main-inner box960')
+          div(class='loc-list locList clearfix')
+
+
+
+
+  script(type='text/javascript' src='/javascripts/index.js')
+  script(type='text/javascript' src='/javascripts/aws-upload.js')
