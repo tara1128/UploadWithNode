@@ -1,6 +1,6 @@
 /*
   Browser client javascript for AWS Upload.
-  Latest modified: 2016-01-13 18:49
+  Latest modified: 2016-01-19 10:57
 */
 
 
@@ -37,7 +37,7 @@ function doAWSUpload( fileId, rename, file, info ) {
       _em.append( delBtn );
       $("#delAWS_" + fileId).click(function(){
         $(this).html('waiting...');
-        // doAWSDelObject( info, uniqueName, fileId );
+        doAWSDelObject( info, uniqueName, fileId );
       });
     }
   }).on('httpUploadProgress', function(progress){
@@ -48,35 +48,26 @@ function doAWSUpload( fileId, rename, file, info ) {
 };
 
 
-// doAWSDelObject();
 // Delete a file from AWS S3 Bucket:
-// function doAWSDelObject( info, filename, fileId ) {
-function doAWSDelObject() {
+function doAWSDelObject( info, filename, fileId ) {
   var bucket = new AWS.S3();
   bucket.config.update({
-    //accessKeyId: info.accessKeyId,
-    //secretAccessKey: info.secretAccessKey
-    accessKeyId: 'AKIAJM36ZXMHGHJNHNSQ',
-    secretAccessKey: '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'
+    accessKeyId: info.accessKeyId,
+    secretAccessKey: info.secretAccessKey
   });
-  // bucket.config.region = info.region;
-  bucket.config.region = 'us-west-2';
+  bucket.config.region = info.region;
   var params = {
-    // Bucket: info.bucket,
-    Bucket: 'test-jide-com',
-    // Key: filename 
-    Key: '1452063575759-5yd0-dog02.jpg' 
+    Bucket: info.bucket,
+    Key: filename 
   };
   bucket.deleteObject(params, function(err, data){
     var delbtn = $("#delAWS_" + fileId);
     if(err){
-      alert(0)
       delbtn.html("Delete failed!");
       setTimeout(function(){
         delbtn.html("Delete from AWS");
       }, 2000);
     }else{
-      alert(1)
       $("#uploaded_aws_" + fileId).html('The file has been deleted from AWS S3 successfully !');
     }
   });
