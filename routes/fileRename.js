@@ -1,7 +1,7 @@
 /*
   Rename file for Qiniu & AWS uploads.
   Exports to ./routes/index.js
-  Latest modified 2016-01-08 14:36
+  Latest modified 2016-01-19 14:35
 */
 
 
@@ -13,7 +13,7 @@ function rename( filename ) {
     name += possible.charAt( Math.floor(Math.random() * possible.length) );
   }
   var timestamp = new Date().getTime();
-  name = timestamp + '-' + name + '-' + filename;
+  name = timestamp + '_' + name + '_' + filename;
   return name;
 };
 

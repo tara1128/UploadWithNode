@@ -58,8 +58,8 @@ router.post(jdConf.localSaveApi, multipartMiddleware, function(req, res){
       var result = 'Your file ' + fileName + ' has been stored in Jide Server successfully!';
       var uploadInfos = {
         FileRename: filenameForCloud,
-        // AWSInfo: awsConf.myConfig, // Test with my own account
-        AWSInfo: awsConf.JideTestConfig, // Test with jide test account
+        AWSInfo: awsConf.myConfig, // Test with my own account
+        // AWSInfo: awsConf.JideTestConfig, // Test with jide test account
         // AWSInfo: awsConf.JideProdConfig, // Publish with jide production account
         QiniuInfo: null
       };

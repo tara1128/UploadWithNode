@@ -2,7 +2,7 @@
   Browser client javascript for Jide Upload.
   Using Plupload to select files and save files in Jide server.
   After saving, do Qiniu upload and AWS S3 upload, etc.
-  Latest modified: 2016-01-13 17:31
+  Latest modified: 2016-01-19 13:43
 */
 
 var _SCOPE = {
@@ -108,15 +108,12 @@ var _JideUploader = new plupload.Uploader({
       var file_link = qinInfo.link;
       var img_src = qinInfo.link;
       if( file_type.indexOf("image") < 0 ) { // When file is NOT an image
-        img_src = '/lib/file-ok.png';
+        img_src = '/lib/file_ok.png';
       }
       _ELE.fileList.innerHTML += _TMPL.Uploaded(file.id, img_src, file_link, file.name, file.size, qinInfo.hash);
       doAWSUpload( file.id, rename, nativeFile, awsInfo );
       // doAnotherUpload(); // And other upload services here.
       // NOTICE: We do Qiniu upload in Node server, NOT in browser client.
-      console.log( 'up : ', up);
-      console.log( 'file : ', file);
-      console.log( 'res : ', res);
     },
 
     // When all files in a queue are uploaded, fire this: 

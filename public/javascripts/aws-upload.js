@@ -1,6 +1,6 @@
 /*
   Browser client javascript for AWS Upload.
-  Latest modified: 2016-01-19 10:57
+  Latest modified: 2016-01-19 15:33
 */
 
 
@@ -8,37 +8,37 @@ function doAWSUpload( fileId, rename, file, info ) {
   var file_name = file.name,
       file_type = file.type,
       file_size = file.size;
-  var bucket = new AWS.S3();
   var uniqueName = rename;
-  console.log('do AWS Upload:', info);
-  bucket.config.update({
+  var bucket = new AWS.S3();
+  bucket.config.region = info.region;
+  bucket.config.update({ // This makes the key infos visible in browser, which is insecure.
     accessKeyId: info.accessKeyId,
     secretAccessKey: info.secretAccessKey
   });
-  bucket.config.region = info.region;
   var params = {
     Bucket: info.bucket,
     Key: uniqueName,
     ContentType: file_type,
     Body: file,
-    ACL: 'public-read',
+    ACL: info.acl,
     ServerSideEncryption: info.ServerSideEncryption
   };
   bucket.putObject(params, function(err, data){
     var _em = $("#uploaded_aws_" + fileId);
     if(err){
-      console.log(299, err);
       var errText = file_name + ' failed in uploading to AWS!';
       _em.html(errText).css("color", "#f33");
     }else{
       var url = 'https://s3.amazonaws.com/' + info.bucket + '/' + uniqueName;
       _em.find("a").attr("href", url).html(url);
+      /*
       var delBtn = '<a class="aws_del" id="delAWS_'+ fileId +'" data="'+ fileId + '">(Remove from AWS)</a>';
       _em.append( delBtn );
       $("#delAWS_" + fileId).click(function(){
         $(this).html('waiting...');
         doAWSDelObject( info, uniqueName, fileId );
       });
+      */ // No permission of deleting yet.
     }
   }).on('httpUploadProgress', function(progress){
     var _em = $("#uploaded_aws_" + fileId);
