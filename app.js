@@ -3,7 +3,7 @@
   Get file from client and save file in Jide server.
   Response to client with infos of Qiniu, AWS, etc.
   Do uploads of Qiniu, AWS, etc. in client.
-  Latest modified 2016-01-08 13:32
+  Latest modified 2016-01-19 15:40
 */
 
 var express = require('express');
@@ -13,7 +13,7 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var debug = require('debug')('express:server');
 var http = require('http');
-var port = normalizePort(process.env.PORT || '3038');
+var port = normalizePort(process.env.PORT || '8081');
 var app = express();
 var server = http.createServer(app);
 var index = require('./routes/index');
