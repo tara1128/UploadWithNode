@@ -4,4 +4,4 @@
   Latest modified 2016-01-08 11:00
 */
 
-exports.localSaveApi = '/saveInJideServer';
+exports.localSaveApi = '';
