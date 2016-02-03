@@ -1,6 +1,6 @@
 /*
   CSS for Jide Upload
-  Latest modified: 2016-01-13 13:46
+  Latest modified: 2016-02-02 13:10
 */
 @font-face {
   font-family: "Roboto_Light";
@@ -35,7 +35,6 @@ body {
 }
 .make-hide {
   display: none;
-  visibility: hidden;
 }
 
 /* ====== nav ====== */
@@ -61,14 +60,90 @@ body {
   font-weight: normal;
 }
 
+/* user dropdown menu */
+.content-user {
+  position: relative;
+  display: block;
+  margin-top: 28px;
+  padding-right: 20px;
+  color: #f1f3f5;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+.content-user:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.user-icon-drop {
+  position: absolute;
+  right: 0px;
+  top: 1px;
+  width: 16px;
+  height: 16px;
+  background: url('/lib/drop_down_arr.png') no-repeat;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+.user-dropdown {
+  display: none;
+  position: absolute;
+  right: 0px;
+  top: 20px;
+  width: 148px;
+  border: 1px solid #62aac3;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.user-funcbtn {
+  padding: 0 10px;
+  color: #62aac3;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 40px;
+  text-align: right;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+.user-funcbtn.lastbtn {
+  border-bottom: none;
+}
+.user-funcbtn:hover {
+  background: #62aac3;
+  color: #fff;
+}
+
 /* ====== main ====== */
 .content-main {
   width: 100%;
 }
-.content-main-inner {
-  padding: 30px 0 150px;
-  min-height: 668px;
-  border-bottom: 1px solid #fff;
+.files-present {
+  padding: 50px 0;
+}
+.files-recent {
+  padding: 0 0 200px;
+}
+.up-clear-recent {
+  float: right;
+  font-size: 12px;
+  color: #62aac3;
+  cursor: pointer;
+}
+.up-clear-recent:hover {
+  color: #999;
+  text-decoration: underline;
 }
 .content-main-copyright {
   margin: 0px auto;
@@ -152,11 +227,32 @@ body {
   opacity: .8;
 }
 .plup-filelist div.uploaded {
+  position: relative;
   width: 100%;
   height: 130px;
   padding: 15px 0;
   background-color: #fff;
   border-bottom: 1px solid #62aac3;
+}
+.uploaded-close {
+  position: absolute;
+  display: none;
+  top: 8px;
+  right: 8px;
+  text-indent: -9999px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background: url("/lib/icon_close.png") no-repeat;
+  opacity: 0.3;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+.uploaded-close:hover {
+  opacity: 1;
 }
 .uploaded-left {
   float: left;
@@ -196,25 +292,104 @@ body {
   text-decoration: underline;
   font-weight: bold;
 }
-
-
 .up-warn {
-  display: none;
   margin: 10px 0;
   font-size: 14px;
   text-align: center;
   color: #f33;
 }
-
-
-/* Canvas */
-#particles {
-  position: absolute;
-  top: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
+/* styles for recent uploaded files */
+.plup-recent {
+  margin: 10px auto 0;
+  padding: 10px 0;
+  border: 1px solid #e5e5e5;
+  background: #f1f1f1;
+  border-radius: 4px;
 }
-#particles canvas {
+.plup-recent p.nofile {
+  text-align: center;
+  line-height: 30px;
+  color: #c0c0c0;
+  font-size: 12px;
+}
+.recent-item {
   display: block;
+  padding: 0 10px;
+  height: 28px;
+  background-color: none;
+  overflow: hidden;
+}
+.recent-item.active {
+  background-color: #fff;
+}
+.recent-ip, .recent-url {
+  display: block;
+  float: left;
+  font-size: 12px;
+  line-height: 28px;
+}
+.recent-ip {
+  color: #62aac3;
+}
+.recent-url {
+  margin-left: 15px;
+  color: #666;
+}
+.recent-url:hover {
+  color: #62aac3;
+  text-decoration: underline;
+}
+.recent-time {
+  display: block;
+  float: right;
+  font-size: 12px;
+  line-height: 28px;
+  color: #777;
+  text-decoration: none;
+}
+
+/* login styles */
+.login-wrapper {
+  margin: 0 auto;
+  padding: 150px 0;
+  width: 25%;
+}
+.login-div {
+  margin: 10px 0;
+}
+.login-title-h1 {
+  margin: 10px 0;
+  text-align: center;
+  font-size: 20px;
+  color: #62aac3;
+}
+.login-title-h2 {
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+}
+
+/* Styles attach to user levels */
+.J_attachToLevel {
+  display: none;
+}
+
+/* Styles for prompt */
+.change-pw-prompt input {
+  margin: 15px 0;
+}
+.pop-txt {
+  margin: 24px 0 10px 0;
+  font-size: 16px;
+  color: #666;
+}
+.pop-radios label {
+  margin-right: 15px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+}
+.pop-radio {
+  margin-top: 3px;
 }

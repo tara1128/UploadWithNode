@@ -1,5 +1,6 @@
 /*
-  util.css, latest modified 2015-09-14 11:39
+  util.css.
+  Latest modified 2016-02-02 13:29
 */
 
 /* ------------ css for input ----------- */
@@ -141,8 +142,8 @@
   padding: 0 15px;
   width: 100px;
   height: 44px;
-  background-color: #008cff;
-  border: 1px solid #008cff;
+  background-color: #62aac3;
+  border: 1px solid #62aac3;
   color: #fff;
   font-size: 14px;
   text-align: center;
@@ -151,10 +152,16 @@
   cursor: pointer;
   overflow: hidden;
   box-sizing: border-box;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
 }
 .btn-primary:hover {
   text-decoration: none;
-  background-color: #0096ff;
+  background-color: #fff;
+  color: #62aac3;
 }
 /* Series of buttons below, all based on primary button.
    When using 'btn-*' as a class, 'btn-primary' should be used at the same time. */
@@ -201,11 +208,16 @@
 /* blank button */
 .btn-primary.btn-blank {
   background-color: #fff;
-  color: #008cff;
+  color: #62aac3;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
 }
 .btn-primary.btn-blank:hover {
-  border: 1px solid #0096ff;
-  color: #0096ff;
+  border: 1px solid #666;
+  color: #666;
 }
 
 /* red button */

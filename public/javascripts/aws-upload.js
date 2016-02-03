@@ -1,23 +1,25 @@
 /*
   Browser client javascript for AWS Upload.
-  Latest modified: 2016-01-19 15:33
+  Latest modified: 2016-01-22 18:26
 */
 
 
-function doAWSUpload( fileId, rename, file, info ) {
+function doAWSUpload( fileId, rename, dirname, file, info ) {
   var file_name = file.name,
       file_type = file.type,
       file_size = file.size;
   var uniqueName = rename;
+  var dirNameDec = decodeURIComponent( dirname );
+  var forKey = dirNameDec + "/" + uniqueName;
   var bucket = new AWS.S3();
   bucket.config.region = info.region;
-  bucket.config.update({ // This makes the key infos visible in browser, which is insecure.
+  bucket.config.update({
     accessKeyId: info.accessKeyId,
     secretAccessKey: info.secretAccessKey
   });
   var params = {
     Bucket: info.bucket,
-    Key: uniqueName,
+    Key: forKey,
     ContentType: file_type,
     Body: file,
     ACL: info.acl,
@@ -29,7 +31,7 @@ function doAWSUpload( fileId, rename, file, info ) {
       var errText = file_name + ' failed in uploading to AWS!';
       _em.html(errText).css("color", "#f33");
     }else{
-      var url = 'https://s3.amazonaws.com/' + info.bucket + '/' + uniqueName;
+      var url = 'https://'+ info.bucket + '.s3.amazonaws.com/' + forKey;
       _em.find("a").attr("href", url).html(url);
       /*
       var delBtn = '<a class="aws_del" id="delAWS_'+ fileId +'" data="'+ fileId + '">(Remove from AWS)</a>';
@@ -43,6 +45,7 @@ function doAWSUpload( fileId, rename, file, info ) {
   }).on('httpUploadProgress', function(progress){
     var _em = $("#uploaded_aws_" + fileId);
     var prg = Math.round(progress.loaded / progress.total * 100);
+    if(!prg) { prg = 0; }
     _em.find("a").html("Uploading " + prg + "% ...");
   });
 };

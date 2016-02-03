@@ -1,5 +1,6 @@
 /*
-  util.popAlert.js, latest modified 2015-09-14 12:03
+  util.popAlert.js.
+  Latest modified 2016-02-02 11:25
 */
 
 var popAlert = function( options ) {
@@ -29,7 +30,7 @@ var popAlert = function( options ) {
 
 popAlert.prototype.Alert = function() {
   var imAlert = this;
-  var tmpl = '<div class="U_warningContainer">\
+  var tmpl = '<div class="U_warningContainer" id="U_WnCon_id_'+ this.id +'">\
                 <div class="U_Warning '+ this.style +' '+ this.clsName +'" id="U_Warning_'+ this.id +'">\
                   <div class="U_warningBtns clearfix">\
                     <a class="U_btnConfirm btn-primary '+ this.btns[0].className +'">'+ this.btns[0].text +'</a>\
@@ -37,47 +38,50 @@ popAlert.prototype.Alert = function() {
                 </div>\
               </div>';
   var existedPopAlert = $("body").find(".U_Warning"); // Searching if there is an existed popAlert
-  if( !existedPopAlert.length ){ // Only when there is no existed popAlert that could we make a new popAlert.
-    $("body").prepend( $(tmpl) );
+  if( existedPopAlert.length ){
+    existedPopAlert.remove(); // If have existed pops, remove them all first.
+  }
+  $("body").prepend( $(tmpl) );
+  if(this.id){
+    var U_warnContainer = $("#U_WnCon_id_" + this.id);
+  }else{
     var U_warnContainer = $(".U_warningContainer");
-    var U_Warn = $(".U_Warning");
-    if( this.width ){
-      U_Warn.css({
-        "width": this.width + "px",
-        "margin-left": "-" + (this.width/2) + "px"
-      });
-    }
-    if( this.html ){
-      U_Warn.prepend( '<div class="U_warningHTMLBox" id="U_warningHTMLBox_'+ this.id +'">'+ this.html +'</div>' );
-    }
-    if( this.text ){
-      U_Warn.prepend( '<div class="U_warningSimpleText '+ this.textAlign +'">'+ this.text +'</div>' );
-    }
-    if( this.title ){
-      U_Warn.prepend( '<h1 class="U_warningTitle"><span>'+ this.title +'</span></h1>' );
-    }
-    var confirmBtn = $(".U_btnConfirm");
-    confirmBtn.click(function(){
-      if( imAlert.btns[0].handler ){
-        imAlert.btns[0].handler();
-      };
+  }
+  var U_Warn = $(".U_Warning");
+  if( this.width ){
+    U_Warn.css({
+      "width": this.width + "px",
+      "margin-left": "-" + (this.width/2) + "px"
+    });
+  }
+  if( this.html ){
+    U_Warn.prepend( '<div class="U_warningHTMLBox" id="U_warningHTMLBox_'+ this.id +'">'+ this.html +'</div>' );
+  }
+  if( this.text ){
+    U_Warn.prepend( '<div class="U_warningSimpleText '+ this.textAlign +'">'+ this.text +'</div>' );
+  }
+  if( this.title ){
+    U_Warn.prepend( '<h1 class="U_warningTitle"><span>'+ this.title +'</span></h1>' );
+  }
+  var confirmBtn = $(".U_btnConfirm");
+  confirmBtn.click(function(){
+    if( imAlert.btns[0].handler ){
+      imAlert.btns[0].handler();
+    };
+    U_warnContainer.remove();
+  });
+  if( this.btns[1] && this.btns[1].text ){ // If you need a second button
+    $(".U_warningBtns").append( '<a class="U_btnCancel btn-primary btn-blank '+ this.btns[1].className +'">'+ this.btns[1].text +'</a>' );
+    $(".U_btnCancel").click(function(){
+      if( imAlert.btns[1].handler ){
+        imAlert.btns[1].handler();
+      }
       U_warnContainer.remove();
     });
-    if( this.btns[1] && this.btns[1].text ){ // If you need a second button
-      $(".U_warningBtns").append( '<a class="U_btnCancel btn-primary btn-blank '+ this.btns[1].className +'">'+ this.btns[1].text +'</a>' );
-      $(".U_btnCancel").click(function(){
-        if( imAlert.btns[1].handler ){
-          imAlert.btns[1].handler();
-        }
-        U_warnContainer.remove();
-      });
-      $(".U_btnConfirm").addClass("fl");
-      $(".U_btnCancel").addClass("fr");
-    }else{ // If there is only one button, then place it in the center.
-      confirmBtn.css("margin", "0 auto");
-    }
-  }else{
-    return false; // Only one popAlert can be shown on screen
+    $(".U_btnConfirm").addClass("fl");
+    $(".U_btnCancel").addClass("fr");
+  }else{ // If there is only one button, then place it in the center.
+    confirmBtn.css("margin", "0 auto");
   }
 };
 

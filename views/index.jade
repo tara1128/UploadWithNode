@@ -1,32 +1,40 @@
 extends layout
 
 block content
-  div(class='wrapper')
+  div(class='wrapper' id='J_Wrapper')
 
     div(class='content-wrapper clearfix' id='J_contentWrapper')
       div(class='content-nav')
         div(class='content-nav-inner box960 clearfix')
-          h1(class='content-title-h1') #{H1}
-          h2(class='content-title-h2') #{H2}
+          h1(class='content-title-h1') Alex Upload Service
+          h2(class='content-title-h2') Upload static resources to webcdn!
+          a(class='content-user fr' id='J_userMenu') Welcome #{username} !
+            s(class='user-icon-drop')
+            div(class='user-dropdown' id='J_userDropDown' data='fold')
+              div(class='user-funcbtn J_attachToLevel' id='J_addUser' data='#{userlevel}') Add user
+              div(class='user-funcbtn' id='J_changePW' data='#{username}') Change password 
+              div(class='user-funcbtn lastbtn' id='J_logout' data='#{username}') Log out
       div(class='content-main')
-        div(class='content-main-inner box960 clearfix')
-          p(class='up-txt') #{desc}
+        div(class='content-main-inner files-present box960 clearfix')
+          p(class='up-txt') Select local files to upload:
           div(class='plup-container' id='plupContainer')
             div(class='make-hide' id='plupDomain') #{domain}
             div(class='make-hide' id='plupUptoken') #{uptokenUrl}
             div(class='make-hide' id='plupLocalSave') #{localSave}
-            div(class='plup-filepicker' id='plupFilePicker') #{selText}
+            div(class='plup-filepicker' id='plupFilePicker') Select Files Now
             div(class='plup-empty' id='plupEmpty') Nothing has been uploaded yet!
             div(class='plup-filelist' id='plupFileList')
-
-            div(class='plup-fileconsole' id='plupFileConsole')
-          p(class='up-warn Warn') This is the warning text!
+            div(class='up-warn Warn' id='plupWarning')
+        div(class='content-main-inner files-recent box960 clearfix')
+          p(class='up-txt clearfix') Recent uploaded files:
+            a(class='up-clear-recent J_attachToLevel' id='clearRecent' data='#{userlevel}') Clear recent files
+          div(class='plup-recent' id='plupRecent') 
         div(class='content-main-copyright') 
-          p Jide Web Team @2016 All rights reserved.
-
-  div(id='particles')
-    canvas(class='particles-js-canvas-el' width='879' height='956' style='width: 100%; height: 100%;')
+          p Alexandra Wang @2016 All rights reserved.
+          p(class='up-version' id='Version') Version 2016.02.03.1132
 
 
   script(type='text/javascript' src='/javascripts/index.js')
   script(type='text/javascript' src='/javascripts/aws-upload.js')
+  script(type='text/javascript' src='/javascripts/prepend-to-recent.js')
+  script(type='text/javascript' src='/javascripts/clear-recent-files.js')

@@ -1,19 +1,20 @@
 /*
-  Server codes for JideUpload, app.js
-  Get file from client and save file in Jide server.
+  Server codes for Upload, app.js
+  Get file from client and save file in local server.
   Response to client with infos of Qiniu, AWS, etc.
   Do uploads of Qiniu, AWS, etc. in client.
-  Latest modified 2016-01-19 15:40
+  Latest modified 2016-02-03 11:21
 */
 
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
+var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var debug = require('debug')('express:server');
 var http = require('http');
-var port = normalizePort(process.env.PORT || '8081');
+var port = normalizePort(process.env.PORT || '8082');
 var app = express();
 var server = http.createServer(app);
 var index = require('./routes/index');
@@ -30,6 +31,7 @@ app.use(favicon(path.join(__dirname, 'public/lib', 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
 
 app.use('/', index);
 
@@ -70,7 +72,6 @@ function normalizePort(val) {
 function serverOnConnecting() {
   var addr = server.address();
   var bind = (typeof addr === 'string')?('Pipe ' + addr):('Port ' + addr.port);
-  console.log('Server has connected ' + bind);
 };
 /* Event listener for HTTP Server 'listening' event. */
 function serverOnListening() {
