@@ -1,0 +1,1 @@
+{"id":"new-guy_773215","username":"new-guy","password":"123456","level":"1"}

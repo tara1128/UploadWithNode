@@ -15,3 +15,8 @@ chrome-user-data
 *.sublime-workspace
 .idea
 *.iml
+
+config/qiniu_config.js
+config/aws_config.js
+recentUpload/
+alex_upload/

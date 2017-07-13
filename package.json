@@ -1,7 +1,7 @@
 {
-  "name": "JideUpload",
-  "version": "2.0.0",
-  "description": "Jide upload files to AWS and Qiniu",
+  "name": "AlexUpload",
+  "version": "2.5.0",
+  "description": "Upload files to AWS and Qiniu",
   "main": "app.js",
   "scripts": {
     "test": "node app.js"
@@ -11,7 +11,7 @@
     "aws",
     "qiniu"
   ],
-  "author": "Jide Web Team",
+  "author": "Alexandra Wang",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": ">= 2.0.9",

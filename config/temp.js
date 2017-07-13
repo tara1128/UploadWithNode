@@ -1,11 +1,18 @@
 /*
-  AWS S3 Configurations
-  Exports to app.js
-  Latest modified 2017-07-13 17:32
-  Have added the production conf.
-*/
+  Qiniu Upload Configurations for account
+  Exports to ./routes/index.js
+  Latest modified 2017-07-13 17:31
 
-exports.myConfig = { // My Own account
+exports.QiniuConfig = {
+  'ACCESS_KEY': '',
+  'SECRET_KEY': '',
+  'Bucket_Name': '',
+  // 'Port': 19110,
+  'Uptoken_Url': '/uptoken', // Generate uptoken in Qiniu SDK
+  'Domain': ''
+};
+
+exports.myConfig = {
   bucket: 'test-alex-com',
   accessKeyId: '',
   secretAccessKey: '',
@@ -17,7 +24,7 @@ exports.myConfig = { // My Own account
   maxFileSize: 10585760 // 10MB
 };
 
-exports.TestConfig = { 
+exports.JideTestConfig = { // Jide test account
   bucket: '',
   accessKeyId: '',
   secretAccessKey: '',
@@ -26,10 +33,12 @@ exports.TestConfig = {
   ServerSideEncryption: 'AES256',
   acl: 'public-read',
   endPoint: '',
+  // endPoint: '',
+  // endPoint: '',
   maxFileSize: 10585760
 };
 
-exports.ProdConfig = { 
+exports.JideProdConfig = { // Jide production account
   bucket: '',
   accessKeyId: '',
   secretAccessKey: '',
@@ -40,3 +49,9 @@ exports.ProdConfig = {
   endPoint: '',
   maxFileSize: 10585760
 };
+
+
+
+
+
+*/
