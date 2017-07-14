@@ -75,7 +75,7 @@
   width: 510px;
   min-height: 100px;
   border: 1px solid #c8c8c8;
-  background: url("https://dn-cdn-shop-jide-com.qbox.me/jide_upload/P1438229179942_icon_warning.png") 50% 25% no-repeat #fff;
+  background: url("/images/warning.png") 50% 25% no-repeat #fff;
   border-radius: 4px;
   box-shadow: 1px 1px 50px rgba(0,0,0,.2);
   overflow: hidden;
@@ -87,11 +87,11 @@
   float: right;
 }
 .U_Warning.warning {
-  background: url("https://dn-cdn-shop-jide-com.qbox.me/jide_upload/P1438229179942_icon_warning.png") 50% 25% no-repeat #fff;
+  background: url("/images/warning.png") 50% 25% no-repeat #fff;
   padding: 120px 0 20px;
 }
 .U_Warning.congrates {
-  background: url("https://dn-cdn-shop-jide-com.qbox.me/jide_upload/H1438232727894_icon_orderok.png") 50% 25% no-repeat #fff;
+  background: url("/images/check.png") 50% 25% no-repeat #fff;
   padding: 120px 0 20px;
 }
 .U_Warning.nobg {

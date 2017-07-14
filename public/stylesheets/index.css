@@ -1,16 +1,16 @@
 /*
   CSS for Jide Upload
-  Latest modified: 2016-02-02 13:10
+  Latest modified: 2017-07-14 15:41
 */
 @font-face {
-  font-family: "Roboto_Light";
-  src: url("https://dn-cdn-shop-jide-com.qbox.me/jide_upload/B1438229370990_roboto_light.ttf") format("truetype");
+  font-family: "Roboto";
+  src: url("/public/images/roboto.ttf") format("truetype");
 }
 html, body {
   height: 100%;
 }
 body {
-  font-family: 'Roboto_Light',STHeiti,Arial!important;
+  font-family: 'Roboto',STHeiti,Arial!important;
   background-color: #fafafa;
   -webkit-font-smoothing: subpixel-antialiased;
 }
@@ -85,7 +85,7 @@ body {
   top: 1px;
   width: 16px;
   height: 16px;
-  background: url('/lib/drop_down_arr.png') no-repeat;
+  background: url('/public/lib/drop_down_arr.png') no-repeat;
   -webkit-transition: all .4s ease-in-out;
   -moz-transition: all .4s ease-in-out;
   -ms-transition: all .4s ease-in-out;
@@ -243,7 +243,7 @@ body {
   width: 16px;
   height: 16px;
   cursor: pointer;
-  background: url("/lib/icon_close.png") no-repeat;
+  background: url("/public/lib/icon_close.png") no-repeat;
   opacity: 0.3;
   -webkit-transition: all .4s ease-in-out;
   -moz-transition: all .4s ease-in-out;

@@ -1,9 +1,8 @@
 /*
   Server codes for Upload, app.js
-  Get file from client and save file in local server.
+  Get files from client and save in local server.
   Response to client with infos of Qiniu, AWS, etc.
-  Do uploads of Qiniu, AWS, etc. in client.
-  Latest modified 2016-02-03 11:21
+  Latest modified 2017-07-14 16:11
 */
 
 var express = require('express');
@@ -30,7 +29,7 @@ app.set('view engine', 'jade');
 app.use(favicon(path.join(__dirname, 'public/lib', 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './')));
 app.use(cookieParser());
 
 app.use('/', index);

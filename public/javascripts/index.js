@@ -2,7 +2,7 @@
   Browser client javascript for Upload.
   Using Plupload to select files and save files in local server.
   After saving, do Qiniu upload and AWS S3 upload, etc.
-  Latest modified: 2016-02-02 16:40
+  Latest modified: 2017-07-14 15:37
 */
 
 // IDs and settings:
@@ -415,6 +415,7 @@ var _Uploader = new plupload.Uploader({
 
     // After all files were filtered and added to the queue, fire this:
     FilesAdded: function(up, files) {
+      console.log('index.js 418 ! FilesAdded: ', up, files);
       _ELE.fileWarning.innerHTML = '';
       $(_ELE.fileListEmpty).hide();
       $(_ELE.fileList).show();
@@ -427,10 +428,12 @@ var _Uploader = new plupload.Uploader({
 
     // While ONE file is being uploaded, fire this:
     UploadProgress: function(up, file) {
+      console.log('index.js 434 ! UploadProgress: ', up, file);
     },
 
     // Only when ONE file is SUCCESSFULLY uploaded, fire this and do uploads of Qiniu, AWS, etc.
     FileUploaded: function(up, file, res) {
+      console.log('index.js 436 ! FileUploaded: ', up, file, res);
       var nativeFile = file.getNative();
       var upInfos = JSON.parse(res.response);
       var rename = upInfos.FileRename,
@@ -470,6 +473,7 @@ var _Uploader = new plupload.Uploader({
 
     // When all files in a queue are uploaded, fire this:
     UploadComplete: function(up, files) {
+      console.log('index.js 473 ! UploadComplete: ', up, files);
       plupload.each(files, function(file) { // Everytime completing one file, run this:
         $("#uploading_" + file.id).remove();
       });
@@ -477,6 +481,7 @@ var _Uploader = new plupload.Uploader({
 
     // When an error occurs, fire this:
     Error: function(up, err) {
+      console.log('index.js 481 ! Error: ', up, err);
       _ELE.fileWarning.innerHTML = 'Upload failed! Please try again!';
     }
   }

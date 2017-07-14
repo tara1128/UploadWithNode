@@ -1,18 +1,18 @@
 /*
   routes/index.js for upload.
   Render index page
-  Latest modified 2016-02-03 11:22
+  Latest modified 2017-07-14 15:10
 */
 
+var fs = require('fs');
 var express = require('express');
 var qiniu = require('qiniu');
-var fs = require('fs');
 var path = require('path');
 var MD5 = require('md5');
 var router = express.Router();
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
-var jdConf = require('../config/jide_config');
+var localServeConf = require('../config/local_server_config');
 var awsConf = require('../config/aws_config');
 var qnConf = require('../config/qiniu_config');
 var dirName = require('../routes/makeDirName');
@@ -39,7 +39,7 @@ router.get('/', function(req, res){
       userlevel: userLevel,
       domain: qnConf.QiniuConfig.Domain,
       uptokenUrl: qnConf.QiniuConfig.Uptoken_Url,
-      localSave: jdConf.localSaveApi
+      localSave: localServeConf.localSaveApi
     });
   }else{
     res.render('login');
@@ -160,7 +160,7 @@ router.get('/clearRecentFiles', function(req, res){
 });
 
 /* POST to save files in Local Server */
-router.post(jdConf.localSaveApi, multipartMiddleware, function(req, res){
+router.post(localServeConf.localSaveApi, multipartMiddleware, function(req, res){
   // This middleware will create temp files on your server and never clean them up.
   // So be sure to delete all req.files when done.
   var file = req.files.file;
@@ -203,9 +203,11 @@ router.post(jdConf.localSaveApi, multipartMiddleware, function(req, res){
             }else{
               var result = 'Qiniu upload has completed successfully!';
               var url = qnConf.QiniuConfig.Domain + ret.key;
+              var url_basedOnServer = uploadDirName + '/' + filenameWithMd5;
+              console.log('url_basedOnServer ==== ', url_basedOnServer);
               uploadInfos.QiniuInfo = { // Overwrite QiniuInfo, whose initial value is null
                 hash: ret.hash,
-                link: url
+                link: url_basedOnServer
               };
               var userIP = '0.0.0.0';
               if( require('ipware') ){
